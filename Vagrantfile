@@ -6,12 +6,12 @@ BOXES = [
     role: 'server',
     ram: 2048,
     cpus: 2,
+    box: 'bento/centos-6.7',
     chef: {
       json: {
         'teamcity' => {
           'password' => '$1$ByY03mDX$4pk9wp9bC19yB6pxSoVB81',
           'server' => {
-            'backup' => 'file:///vagrant/tmp/TeamCity_Backup_20141216_154715.zip',
             'database' => {
               'username' => 'postgres',
               'password' => '3175bce1d3201d16594cebf9d7eb3f9d',
@@ -32,7 +32,7 @@ BOXES = [
         },
         'java' => {
           'install_flavor' => 'oracle',
-          'jdk_version' => 7,
+          'jdk_version' => 8,
           'set_etc_environment' => true,
           'oracle' => {
             'accept_oracle_download_terms' => true
@@ -49,6 +49,7 @@ BOXES = [
     role: 'agent',
     ram: 2048,
     cpus: 2,
+    box: 'bento/centos-6.7',
     chef: {
       json: {
         'teamcity' => {
@@ -60,7 +61,7 @@ BOXES = [
         },
         'java' => {
           'install_flavor' => 'oracle',
-          'jdk_version' => 7,
+          'jdk_version' => 8,
           'set_etc_environment' => true,
           'oracle' => {
             'accept_oracle_download_terms' => true
@@ -81,7 +82,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     config.vm.define node[:hostname] do |node_config|
       node_config.vm.hostname = node[:hostname]
       node_config.omnibus.chef_version = :latest
-      node_config.vm.box = 'chef/centos-6.5'
+      node_config.vm.box = node[:box]
 
       node_config.vm.network :private_network, ip: node[:ip]
 
