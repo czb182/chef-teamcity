@@ -2,7 +2,7 @@ source 'https://supermarket.getchef.com'
 
 metadata
 
-cookbook 'postgresql', '~> 3.4.20'
+cookbook 'postgresql', '~> 3.4.14'
 cookbook 'java', '~> 1.35.0'
 cookbook 'git', '~> 4.3.4'
 cookbook 'mercurial', '~> 2.0.4'
